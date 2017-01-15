@@ -3,7 +3,7 @@ class Admin::JobsController < ApplicationController
   before_action :require_is_admin
 
   def show
-    @job = Job.fnd(params[:id])
+    @job = Job.find(params[:id])
   end
 
   def index
@@ -24,7 +24,7 @@ class Admin::JobsController < ApplicationController
   end
 
   def edit
-    @job = Job.fine(params[:id])
+    @job = Job.find(params[:id])
   end
 
   def update
@@ -47,7 +47,7 @@ class Admin::JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :description, :wage_upper_bound, :wage_lower_bound, :contact_email)
+    params.require(:job).permit(:title, :description, :wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden)
   end
 
 end
