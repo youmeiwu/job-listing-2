@@ -9,7 +9,7 @@ class Admin::JobsController < ApplicationController
   end
 
   def index
-    @jobs = Job.all
+    @jobs = Job.recent.paginate(:page => params[:page], :per_page => 15)
   end
 
   def new

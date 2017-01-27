@@ -1,32 +1,44 @@
-<div class="pull-right">
-  <%= link_to("Add a job", new_job_path, :class => "btn btn-default") %>
+<div class="container－fluid">
+  <div class="row">
+    <div class="col-md-9" role="search">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="To input job title" >
+        <span class="input-group-addon"><i class="fa fa-search fa-lg" ></i></span>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="pull-right">
+        <%= link_to("Add a job", new_job_path, :class => "btn btn-default") %>
+      </div>
+
+      <div class="dropdown clearfix pull-right">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >
+           Sort by
+           <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdwonMenuDivider">
+          <li>
+            <%= link_to("Sort by wage lower bound", jobs_path(:order => "by_lower_bound"))%>
+          </li>
+          <li>
+            <%= link_to("Sort by wage upper bound", jobs_path(:order => "by_upper_bound")) %>
+          </li>
+          <li>
+            <%= link_to("Sort by posted time", jobs_path)%>
+          </li>
+        </ul>
+    </div>
+  </div>
 </div>
 
-<div class="dropdown clearfix pull-right">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >
-     排序
-     <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdwonMenuDivider">
-    <li>
-      <%= link_to("按照薪资下限排序", jobs_path(:order => "by_lower_bound"))%>
-    </li>
-    <li>
-      <%= link_to("按照薪资上限排序", jobs_path(:order => "by_upper_bound")) %>
-    </li>
-    <li>
-      <%= link_to("按照发表时间排序", jobs_path)%>
-    </li>
-  </ul>
-</div>
-
-<table class="table table-boldered">
+<table class="table table-boldered table-striped table-hover custab">
   <thead>
     <tr>
-      <td>职缺</td>
-      <td>薪资下限</td>
-      <td>薪资上限</td>
-      <td>刊登时间</td>
+      <td>Jobs</td>
+      <td>Wage Lower Bound</td>
+      <td>Wage Upper Bound</td>
+      <td>Posted Time</td>
     </tr>
   </thead>
 
@@ -50,3 +62,8 @@
 </tbody>
 
 </table>
+</div>
+
+<div class="text-center">
+  <%= will_paginate @jobs %>
+</div>
